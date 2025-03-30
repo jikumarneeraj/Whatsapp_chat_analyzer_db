@@ -6,12 +6,14 @@ import emoji
 import seaborn as sns
 import ssl
 from pymongo import MongoClient
-
+from datetime import datetime
+now = datetime.now()
+formatted = now.strftime("%Y-%m-%d %H:%M:%S")
+chats=f'chat_{formatted}'
 uri="mongodb+srv://neerajkumar1092005:FFLrJknlUTZA8QuU@cluster0.hlt83dv.mongodb.net/?retryWrites=true&w=majority&tls=true&appName=Cluster0"
 client = MongoClient(uri)
 db = client["whatsapp_chat_db"]
-collection = db["chats"]
-
+collection = db[chats]
 st.sidebar.title("Whatsapp Chat Analyzer")
 
 uploaded_file = st.sidebar.file_uploader("Choose a file")
